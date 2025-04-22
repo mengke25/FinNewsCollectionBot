@@ -102,7 +102,7 @@ def fetch_rss_articles(rss_feeds, max_articles=10):
             print(f"✅ {source} RSS 获取成功，共 {len(feed.entries)} 条新闻")
 
             articles = []  # 每个source都需要重新初始化列表
-            for entry in feed.entries[:5]:
+            for entry in feed.entries[:10]:                 ## for entry in feed.entries[:5]:
                 title = entry.get('title', '无标题')
                 link = entry.get('link', '') or entry.get('guid', '')
                 if not link:
@@ -150,7 +150,7 @@ if __name__ == "__main__":
     today_str = today_date().strftime("%Y-%m-%d")
 
     # 每个网站获取最多 5 篇文章
-    articles_data, analysis_text = fetch_rss_articles(rss_feeds, max_articles=5)
+    articles_data, analysis_text = fetch_rss_articles(rss_feeds, max_articles=10)
     
     # AI生成摘要
     summary = summarize(analysis_text)
